@@ -250,7 +250,7 @@ void print_help(char* argv0)
 	printf("| -t, --tcp        | Run in TCP mode (default)      |\n");
 	printf("| -h, --help       | Print this help message        |\n");
 	printf("| -v, --verbose    | Enable debugging output        |\n");
-	printf("| -o, --persistent | Always wait for new connection |\n");
+	printf("| -p, --persistent | Always wait for new connection |\n");
 	printf("+------------------+--------------------------------+\n");
 	printf("\nArguments are handled in the order they are given and the last one of a type will overwrite any previous ones of the same type!\n");
 }
