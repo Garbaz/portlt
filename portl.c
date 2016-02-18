@@ -144,6 +144,7 @@ int main(int argc, char* argv[])
 				{
 					break;
 				}
+				PRNT_VERB("Recieved %d bytes\n\n", bytes_recvd);
 				for(int i = 0; i < bytes_recvd; i++)
 				{
 					putchar(recv_buffer[i]);
@@ -184,8 +185,9 @@ int main(int argc, char* argv[])
 			setbuf(stdout, NULL);
 			while(1)
 			{
-				if((bytes_recvd = recvfrom(hostfd, recv_buffer, BUFFER_SIZE, 0, (struct sockaddr *)&sender, &senderlen) < 1))
+				if((bytes_recvd = recvfrom(hostfd, recv_buffer, BUFFER_SIZE, 0, (struct sockaddr *)&sender, &senderlen)) < 1)
 				{
+					printf("-");
 					continue;
 				}
 				for(int i = 0; i < bytes_recvd; i++)

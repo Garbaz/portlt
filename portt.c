@@ -77,11 +77,11 @@ int main(int argc, char* argv[])
 		setbuf(stdout, NULL);
 		while(read(0, read_buffer, BUFFER_SIZE) > 0)
 		{
-			memset(read_buffer, 0, BUFFER_SIZE);
 			if(send(targetfd, read_buffer, BUFFER_SIZE, 0) < 1)
 			{
 				fprintf(stderr, "Unable to send package!\n");
 			}
+			memset(read_buffer, 0, BUFFER_SIZE);
 		}
 		printf("done!\n");
 	}
