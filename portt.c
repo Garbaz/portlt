@@ -79,7 +79,7 @@ int main(int argc, char* argv[])
 		printf("Sending...\n");
 		while((bytes_read = read(0, read_buffer, BUFFER_SIZE)) > 0)
 		{
-			bytes_sent = 0;
+			bytes_gone = 0;
 			while(bytes_gone < bytes_read)
 			{
 				if((bytes_sent = send(targetfd, read_buffer + bytes_gone, bytes_read - bytes_gone, 0)) < 1)
