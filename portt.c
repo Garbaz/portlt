@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
 			bytes_sent = 0;
 			while(bytes_gone < bytes_read)
 			{
-				if((bytes_sent = send(targetfd, read_buffer + bytes_gone, bytes_read, 0)) < 1)
+				if((bytes_sent = send(targetfd, read_buffer + bytes_gone, bytes_read - bytes_gone, 0)) < 1)
 				{
 					fprintf(stderr, "Unable to send package!\n");
 					continue;
@@ -121,7 +121,7 @@ int main(int argc, char* argv[])
 			bytes_gone = 0;
 			while(bytes_gone < bytes_read)
 			{
-				if((bytes_sent = usend(targetfd, targetinfo, read_buffer + bytes_gone, bytes_read-bytes_gone)) < 1)
+				if((bytes_sent = usend(targetfd, targetinfo, read_buffer + bytes_gone, bytes_read - bytes_gone)) < 1)
 				{
 					fprintf(stderr, "Unable to send package!\n");
 					continue;
