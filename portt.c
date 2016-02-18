@@ -71,6 +71,7 @@ int main(int argc, char* argv[])
 					fprintf(stderr, "Unknown error");
 			}
 			fprintf(stderr, "\n");
+			return 1;
 		}
 		printf("done!\n");
 		
@@ -125,7 +126,7 @@ int main(int argc, char* argv[])
 
 void handle_args(int argc, char* argv[])
 {
-	char got_addr = 0;
+	char got_addr = 0, got_port = 0;
 	if(argc > 1)
 	{
 		for(int i = 1; i < argc; i++)
@@ -153,8 +154,14 @@ void handle_args(int argc, char* argv[])
 				else
 				{
 					port_buffer = argv[i];
+					got_port = 1;
 				}
 			}
+		}
+		if(!(got_addr && got_port))
+		{
+			print_help(argv[0]);
+			exit(1);
 		}
 	}
 	else
@@ -166,7 +173,9 @@ void handle_args(int argc, char* argv[])
 
 void print_help(char* argv0)
 {
-	printf("\nSynopsis:\n");
+	printf("\n ---portt---\n\n");
+	printf("Sends data to given port on given host. Data is read from STDIN.\n\n");
+	printf("Synopsis:\n");
 	printf("%s [-u] [-t] [-h] ADDRESS PORT\n\n", argv0);
 	printf("ADDRESS = The address to which to send\n");
 	printf("PORT    = The port to which to send on target host\n\n");

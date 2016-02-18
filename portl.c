@@ -202,6 +202,7 @@ int main(int argc, char* argv[])
 
 void handle_args(int argc, char* argv[])
 {
+	char got_port = 0;
 	if(argc > 1)
 	{
 		for(int i = 1; i < argc; i++)
@@ -230,7 +231,13 @@ void handle_args(int argc, char* argv[])
 			else
 			{
 				strcpy(port_buffer, argv[i]);
+				got_port = 1;
 			}
+		}
+		if(!got_port)
+		{
+			print_help(argv[0]);
+			exit(1);
 		}
 	}
 	else
@@ -242,7 +249,9 @@ void handle_args(int argc, char* argv[])
 
 void print_help(char* argv0)
 {
-	printf("\nSynopsis:\n");
+	printf("\n ---portl---\n\n");
+	printf("Listens on given port for incoming connections/packets and prints bytes to STDOUT.\n\n");
+	printf("Synopsis:\n");
 	printf("%s [-u] [-t] [-h] [-v] PORT\n\n", argv0);
 	printf("PORT = The port on which to listen\n\n");
 	printf("+------------------+--------------------------------+\n");
