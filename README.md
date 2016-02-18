@@ -3,13 +3,13 @@ A very basic pair of software to listen on a port and talk to a port reading \[f
 #####Synopsis:
 Run
 ```bash
-./portX -h
+./portl --help
 ```
-or
+and
 ```bash
-./portX --help
+./portt --help
 ```
-[X = **'l'** / **'t'** respectively]
+respectively
 ##Port Listen (*portl*):
 Listen on specified port for incoming connections (TCP) / packets (UDP) and write to STDOUT.
 ##Port Tell (*portt*):
