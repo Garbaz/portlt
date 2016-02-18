@@ -9,9 +9,9 @@ and
 ```bash
 ./portt --help
 ```
-respectively
-##Port Listen (*portl*):
+respectively.
+###Port Listen (*portl*):
 Listen on specified port for incoming connections (TCP) / packets (UDP) and write to STDOUT.
-##Port Tell (*portt*):
+###Port Tell (*portt*):
 Send content of STDIN buffer in 1024 byte blocks to specified port on host via TCP / UDP.
 
