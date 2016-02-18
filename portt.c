@@ -38,7 +38,7 @@ LICENSE:
 
 char *target_buffer, *port_buffer, read_buffer[BUFFER_SIZE];
 char tcp;
-int targetfd, bytes_sent;
+int targetfd, bytes_sent, bytes_read;
 struct addrinfo *targetinfo;
 
 void handle_args(int argc, char* argv[]);
@@ -52,6 +52,7 @@ int main(int argc, char* argv[])
 	
 	if(tcp)
 	{
+		printf("Connecting...\n");
 		if((targetfd = tconnect(target_buffer, port_buffer)) < 0)
 		{
 			fprintf(stderr, "ERROR (%d): ", targetfd);
@@ -75,13 +76,14 @@ int main(int argc, char* argv[])
 		
 		printf("Sending...\n");
 		setbuf(stdout, NULL);
-		while(read(0, read_buffer, BUFFER_SIZE) > 0)
+		while((bytes_read = read(0, read_buffer, BUFFER_SIZE)) > 0)
 		{
-			if(send(targetfd, read_buffer, BUFFER_SIZE, 0) < 1)
+			if(send(targetfd, read_buffer, bytes_read, 0) < 1)
 			{
 				fprintf(stderr, "Unable to send package!\n");
 			}
-			memset(read_buffer, 0, BUFFER_SIZE);
+			//printf("Sent %d bytes\n", bytes_read);
+			memset(read_buffer, 0, bytes_read);
 		}
 		printf("done!\n");
 	}
@@ -108,14 +110,13 @@ int main(int argc, char* argv[])
 		printf("done!\n");
 		
 		printf("Sending...\n");
-		while(read(0, read_buffer, BUFFER_SIZE) > 0)
+		while((bytes_read = read(0, read_buffer, BUFFER_SIZE)) > 0)
 		{
-			memset(read_buffer, 0, BUFFER_SIZE);
-			if((bytes_sent = usend(targetfd, targetinfo, read_buffer, BUFFER_SIZE)) < 1)
+			if((bytes_sent = usend(targetfd, targetinfo, read_buffer, bytes_read)) < 1)
 			{
 				fprintf(stderr, "Unable to send package!\n");
 			}
-			printf("%d bytes sent.\n", bytes_sent);
+			memset(read_buffer, 0, bytes_read);
 		}
 		printf("done!\n");
 	}
