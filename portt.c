@@ -38,7 +38,7 @@ LICENSE:
 
 char *target_buffer, *port_buffer, read_buffer[BUFFER_SIZE];
 char tcp;
-int targetfd, bytes_sent, bytes_read;
+int targetfd, bytes_sent, bytes_gone, bytes_read;
 struct addrinfo *targetinfo;
 
 void handle_args(int argc, char* argv[]);
@@ -52,7 +52,7 @@ int main(int argc, char* argv[])
 	
 	if(tcp)
 	{
-		printf("Connecting...\n");
+		printf("Connecing to %s on port %s...\n", target_buffer, port_buffer);
 		if((targetfd = tconnect(target_buffer, port_buffer)) < 0)
 		{
 			fprintf(stderr, "ERROR (%d): ", targetfd);
@@ -76,14 +76,17 @@ int main(int argc, char* argv[])
 		printf("done!\n");
 		
 		printf("Sending...\n");
-		setbuf(stdout, NULL);
 		while((bytes_read = read(0, read_buffer, BUFFER_SIZE)) > 0)
 		{
-			if(send(targetfd, read_buffer, bytes_read, 0) < 1)
+			bytes_sent = 0;
+			while(bytes_gone < bytes_read)
 			{
-				fprintf(stderr, "Unable to send package!\n");
+				if((bytes_sent = send(targetfd, read_buffer + bytes_gone, bytes_read, 0)) < 1)
+				{
+					fprintf(stderr, "Unable to send package!\n");
+				}
+				bytes_gone += bytes_sent;
 			}
-			//printf("Sent %d bytes\n", bytes_read);
 			memset(read_buffer, 0, bytes_read);
 		}
 		printf("done!\n");
@@ -113,9 +116,14 @@ int main(int argc, char* argv[])
 		printf("Sending...\n");
 		while((bytes_read = read(0, read_buffer, BUFFER_SIZE)) > 0)
 		{
-			if((bytes_sent = usend(targetfd, targetinfo, read_buffer, bytes_read)) < 1)
+			bytes_gone = 0;
+			while(bytes_gone < bytes_read)
 			{
-				fprintf(stderr, "Unable to send package!\n");
+				if((bytes_sent = usend(targetfd, targetinfo, read_buffer + bytes_gone, bytes_read-bytes_gone)) < 1)
+				{
+					fprintf(stderr, "Unable to send package!\n");
+				}
+				bytes_gone += bytes_sent;
 			}
 			memset(read_buffer, 0, bytes_read);
 		}
