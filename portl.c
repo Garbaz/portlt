@@ -42,7 +42,7 @@ TODO:
 #define PRNT_VERB(...) if(verbose){printf(__VA_ARGS__);};
 #define PRNT_ERR(...) if(!verbose && delta_bytes > BUFFER_SIZE){fprintf(stderr, __VA_ARGS__);delta_bytes = 0;};
 #define BACKLOG 1
-#define BUFFER_SIZE 1048576
+#define BUFFER_SIZE 4096
 
 char port_buffer[6], recv_buffer[BUFFER_SIZE];
 char tcp, verbose, persistent;
