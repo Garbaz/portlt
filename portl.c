@@ -39,13 +39,14 @@ TODO:
 #include <signal.h>
 #include <string.h>
 
-#define PRNT_VERB(...) if(verbose){printf(__VA_ARGS__);}
+#define PRNT_VERB(...) if(verbose){printf(__VA_ARGS__);};
+#define PRNT_ERR(...) if(!verbose && delta_bytes > BUFFER_SIZE){fprintf(stderr, __VA_ARGS__);delta_bytes = 0;};
 #define BACKLOG 1
-#define BUFFER_SIZE 1024
+#define BUFFER_SIZE 1048576
 
 char port_buffer[6], recv_buffer[BUFFER_SIZE];
 char tcp, verbose, persistent;
-int targetfd, hostfd, bytes_recvd;
+int targetfd, hostfd, bytes_recvd, delta_bytes;
 unsigned long overall_bytes_recvd;
 struct sigaction sa;
 struct sockaddr_storage sender;
@@ -150,9 +151,10 @@ int main(int argc, char* argv[])
 					putchar(recv_buffer[i]);
 				}
 				overall_bytes_recvd += bytes_recvd;
-				fprintf(stderr, "\r%lu bytes recieved...", overall_bytes_recvd);
+				delta_bytes += bytes_recvd;
+				PRNT_ERR("\r%lu bytes recieved...", overall_bytes_recvd);
 			}
-			fprintf(stderr, "\r%lu bytes recieved.  \n", overall_bytes_recvd);
+			PRNT_ERR("\r%lu bytes recieved.  \n", overall_bytes_recvd);
 			PRNT_VERB("\n\ndone!\n");
 			tdisconnect(targetfd);
 		}
@@ -198,9 +200,10 @@ int main(int argc, char* argv[])
 					putchar(recv_buffer[i]);
 				}
 				overall_bytes_recvd += bytes_recvd;
-				fprintf(stderr, "\r%lu bytes recieved...", overall_bytes_recvd);
+				delta_bytes += bytes_recvd;
+				PRNT_ERR("\r%lu bytes recieved...", overall_bytes_recvd);
 			}
-			fprintf(stderr, "\r%lu bytes recieved.  \n", overall_bytes_recvd);
+			PRNT_ERR("\r%lu bytes recieved.  \n", overall_bytes_recvd);
 			PRNT_VERB("\n\ndone!\n");
 		}
 	}while(persistent);

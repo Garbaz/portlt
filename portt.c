@@ -34,7 +34,7 @@ LICENSE:
 #include <string.h>
 
 #define BACKLOG 1
-#define BUFFER_SIZE 1024
+#define BUFFER_SIZE 1048576
 
 char *target_buffer, *port_buffer, read_buffer[BUFFER_SIZE];
 char tcp;
