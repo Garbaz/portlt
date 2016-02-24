@@ -135,6 +135,8 @@ int main(int argc, char* argv[])
 	printf("done!\n");
 	printf("%lu bytes sent!\n", overall_bytes_sent);
 	freeaddrinfo(targetinfo);
+	
+	return 0;
 }
 
 void handle_args(int argc, char* argv[])

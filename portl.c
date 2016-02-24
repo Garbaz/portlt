@@ -198,6 +198,8 @@ int main(int argc, char* argv[])
 			PRNT_VERB("\n\ndone!\n");
 		}
 	}while(persistent);
+	return 0;
+
 }
 
 void handle_args(int argc, char* argv[])
