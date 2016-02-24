@@ -77,6 +77,7 @@ int main(int argc, char* argv[])
 		printf("done!\n");
 		
 		printf("Sending...\n");
+		setbuf(stdout, NULL);
 		while((bytes_read = read(0, read_buffer, BUFFER_SIZE)) > 0)
 		{
 			bytes_gone = 0;
@@ -90,8 +91,10 @@ int main(int argc, char* argv[])
 				bytes_gone += bytes_sent;
 			}
 			overall_bytes_sent += bytes_gone;
+			printf("\r%lu bytes sent...", overall_bytes_sent);
 			memset(read_buffer, 0, bytes_read);
 		}
+		printf("\r%lu bytes sent!  \n", overall_bytes_sent);
 	}
 	else
 	{
@@ -116,6 +119,7 @@ int main(int argc, char* argv[])
 		printf("done!\n");
 		
 		printf("Sending...\n");
+		setbuf(stdout, NULL);
 		while((bytes_read = read(0, read_buffer, BUFFER_SIZE)) > 0)
 		{
 			bytes_gone = 0;
@@ -129,11 +133,12 @@ int main(int argc, char* argv[])
 				bytes_gone += bytes_sent;
 			}
 			overall_bytes_sent += bytes_gone;
+			printf("\r%lu bytes sent...", overall_bytes_sent);
 			memset(read_buffer, 0, bytes_read);
 		}
 	}
 	printf("done!\n");
-	printf("%lu bytes sent!\n", overall_bytes_sent);
+	printf("\r%lu bytes sent!  \n", overall_bytes_sent);
 	freeaddrinfo(targetinfo);
 	
 	return 0;

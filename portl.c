@@ -31,7 +31,6 @@ LICENSE:
 TODO:
 - Hex mode
 - table mode
-
 */
 
 #include "netlib.h"
@@ -47,6 +46,7 @@ TODO:
 char port_buffer[6], recv_buffer[BUFFER_SIZE];
 char tcp, verbose, persistent;
 int targetfd, hostfd, bytes_recvd;
+unsigned long overall_bytes_recvd;
 struct sigaction sa;
 struct sockaddr_storage sender;
 socklen_t senderlen;
@@ -149,7 +149,10 @@ int main(int argc, char* argv[])
 				{
 					putchar(recv_buffer[i]);
 				}
+				overall_bytes_recvd += bytes_recvd;
+				fprintf(stderr, "\r%lu bytes recieved...", overall_bytes_recvd);
 			}
+			fprintf(stderr, "\r%lu bytes recieved.  \n", overall_bytes_recvd);
 			PRNT_VERB("\n\ndone!\n");
 			tdisconnect(targetfd);
 		}
@@ -194,7 +197,10 @@ int main(int argc, char* argv[])
 				{
 					putchar(recv_buffer[i]);
 				}
+				overall_bytes_recvd += bytes_recvd;
+				fprintf(stderr, "\r%lu bytes recieved...", overall_bytes_recvd);
 			}
+			fprintf(stderr, "\r%lu bytes recieved.  \n", overall_bytes_recvd);
 			PRNT_VERB("\n\ndone!\n");
 		}
 	}while(persistent);
