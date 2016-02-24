@@ -138,6 +138,7 @@ int main(int argc, char* argv[])
 			
 			PRNT_VERB("Listening on port %s...\n\n", port_buffer);
 			setbuf(stdout, NULL);
+			setbuf(stderr, NULL);
 			while(1)
 			{
 				
@@ -188,6 +189,7 @@ int main(int argc, char* argv[])
 			
 			PRNT_VERB("Listening on port %s...\n\n", port_buffer);
 			setbuf(stdout, NULL);
+			setbuf(stderr, NULL);
 			while(1)
 			{
 				if((bytes_recvd = recvfrom(hostfd, recv_buffer, BUFFER_SIZE, 0, (struct sockaddr *)&sender, &senderlen)) < 1)
