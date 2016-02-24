@@ -1,3 +1,3 @@
 #!/bin/bash
-gcc -Wall -o portl portl.c
-gcc -Wall -o portt portt.c
+gcc -std=c99 -Wall -o portl portl.c
+gcc -std=c99 -Wall -o portt portt.c
