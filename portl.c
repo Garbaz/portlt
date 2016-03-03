@@ -265,7 +265,9 @@ void print_help(char* argv0)
 	printf("\n ---portl---\n\n");
 	printf("Listens on given port for incoming connections/packets and prints bytes to STDOUT.\n\n");
 	printf("Synopsis:\n");
-	printf("%s [-u] [-t] [-h] [-v] PORT\n\n", argv0);
+	if(isatty(fileno(stdout))) printf("\e[1m");
+	printf("portl [-u] [-t] [-h] [-v] PORT\n\n");
+	if(isatty(fileno(stdout))) printf("\e[0m");
 	printf("PORT = The port on which to listen\n\n");
 	printf("+------------------+--------------------------------+\n");
 	printf("| PARAMETER        | FUNCTION                       |\n");

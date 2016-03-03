@@ -196,7 +196,9 @@ void print_help(char* argv0)
 	printf("\n ---portt---\n\n");
 	printf("Sends data to given port on given host. Data is read from STDIN.\n\n");
 	printf("Synopsis:\n");
-	printf("%s [-u] [-t] [-h] ADDRESS PORT\n\n", argv0);
+	if(isatty(fileno(stdout))) printf("\e[1m");
+	printf("portt [-u] [-t] [-h] ADDRESS PORT\n\n");
+	if(isatty(fileno(stdout))) printf("\e[0m");
 	printf("ADDRESS = The address to which to send\n");
 	printf("PORT    = The port to which to send on target host\n\n");
 	printf("+------------+--------------------------------+\n");
