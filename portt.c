@@ -60,16 +60,16 @@ int main(int argc, char* argv[])
 			switch(targetfd)
 			{
 				case -1:
-					fprintf(stderr, "Unable to resolve address");
+					fprintf(stderr, "Unable to resolve address\n");
 					break;
 				case -2:
-					fprintf(stderr, "Unable to set up socket");
+					fprintf(stderr, "Unable to set up socket\n");
 					break;
 				case -3:
-					fprintf(stderr, "Unable to connect to server");
+					fprintf(stderr, "Unable to connect to server\n");
 					break;
 				default:
-					fprintf(stderr, "Unknown error");
+					fprintf(stderr, "Unknown error: %i\n", targetfd);
 			}
 			fprintf(stderr, "\n");
 			return 1;
@@ -94,7 +94,7 @@ int main(int argc, char* argv[])
 			printf("\r%lu bytes sent...", overall_bytes_sent);
 			memset(read_buffer, 0, bytes_read);
 		}
-		printf("\r%lu bytes sent!  \n", overall_bytes_sent);
+		printf("\r%lu bytes sent...\n", overall_bytes_sent);
 	}
 	else
 	{
@@ -105,13 +105,13 @@ int main(int argc, char* argv[])
 			switch(targetfd)
 			{
 				case -1:
-					fprintf(stderr, "Unable to resolve target address");
+					fprintf(stderr, "Unable to resolve target address\n");
 					break;
 				case -2:
-					fprintf(stderr, "Unable to set up socket");
+					fprintf(stderr, "Unable to set up socket\n");
 					break;
 				default:
-					fprintf(stderr, "Unknown error");
+					fprintf(stderr, "Unknown error: %i\n", targetfd);
 			}
 			fprintf(stderr, "\n");
 			return 1;
@@ -138,7 +138,7 @@ int main(int argc, char* argv[])
 		}
 	}
 	printf("done!\n");
-	printf("\r%lu bytes sent!  \n", overall_bytes_sent);
+	printf("\r%lu bytes sent overall!\n", overall_bytes_sent);
 	freeaddrinfo(targetinfo);
 	
 	return 0;
