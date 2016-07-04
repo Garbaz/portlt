@@ -25,3 +25,9 @@ gnu11_release:
 install:
 	cp portt /usr/bin/
 	cp portl /usr/bin/
+
+uninstall: clean
+
+clean:
+	rm /usr/bin/portt
+	rm /usr/bin/portl
