@@ -29,6 +29,7 @@ LICENSE:
 
 
 #include "netlib.h"
+#include "defaults.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -168,20 +169,24 @@ void handle_args(int argc, char* argv[])
 			{
 				if(got_addr == 0)
 				{
-					target_buffer = argv[i];
+					strcpy(target_buffer, argv[i]);
 					got_addr = 1;
 				}
 				else
 				{
-					port_buffer = argv[i];
+					strcpy(port_buffer, argv[i]);
 					got_port = 1;
 				}
 			}
 		}
-		if(!(got_addr && got_port))
+		if(!got_addr)
 		{
 			print_help(argv[0]);
 			exit(1);
+		}
+		if(!got_port)
+		{
+			strcpy(port_buffer,DEFAULT_PORT);
 		}
 	}
 	else
@@ -197,7 +202,7 @@ void print_help(char* argv0)
 	fprintf(stderr,"Sends data to given port on given host. Data is read from STDIN.\n\n");
 	fprintf(stderr,"Synopsis:\n");
 	if(isatty(fileno(stdout))) fprintf(stderr,"\e[1m");
-	fprintf(stderr,"portt [-u] [-t] [-h] ADDRESS PORT\n\n");
+	fprintf(stderr,"portt [OPTIONS] ADDRESS [PORT]\n\n");
 	if(isatty(fileno(stdout))) fprintf(stderr,"\e[0m");
 	fprintf(stderr,"ADDRESS = The address to which to send\n");
 	fprintf(stderr,"PORT    = The port to which to send on target host\n\n");

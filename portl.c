@@ -33,6 +33,7 @@ TODO:
 - table mode
 */
 #include "netlib.h"
+#include "defaults.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
@@ -248,14 +249,15 @@ void handle_args(int argc, char* argv[])
 		}
 		if(!got_port)
 		{
-			print_help(argv[0]);
-			exit(1);
+//			print_help(argv[0]);
+//			exit(1);
+			strcpy(port_buffer,DEFAULT_PORT);
 		}
 	}
 	else
 	{
-		print_help(argv[0]);
-		exit(1);
+//		print_help(argv[0]);
+//		exit(1);
 	}
 }
 
@@ -265,7 +267,7 @@ void print_help(char* argv0)
 	fprintf(stderr,"Listens on given port for incoming connections/packets and prints bytes to STDOUT.\n\n");
 	fprintf(stderr,"Synopsis:\n");
 	if(isatty(fileno(stdout))) fprintf(stderr,"\e[1m");
-	fprintf(stderr,"portl [-u] [-t] [-h] [-v] PORT\n\n");
+	fprintf(stderr,"portl [OPTIONS] [PORT]\n\n");
 	if(isatty(fileno(stdout))) fprintf(stderr,"\e[0m");
 	fprintf(stderr,"PORT = The port on which to listen\n\n");
 	fprintf(stderr,"+------------------+--------------------------------+\n");
