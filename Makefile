@@ -20,4 +20,8 @@ gnu11:
 
 gnu11_release:
 	gcc -Wall -O3 -std=gnu11 -o portl portl.c
-	gcc -Wall -O3 -std=gnu11 -o portt portt.c	
+	gcc -Wall -O3 -std=gnu11 -o portt portt.c
+
+install:
+	cp portt /usr/bin/
+	cp portl /usr/bin/
