@@ -32,7 +32,6 @@ TODO:
 - Hex mode
 - table mode
 */
-
 #include "netlib.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -262,21 +261,21 @@ void handle_args(int argc, char* argv[])
 
 void print_help(char* argv0)
 {
-	printf("\n ---portl---\n\n");
-	printf("Listens on given port for incoming connections/packets and prints bytes to STDOUT.\n\n");
-	printf("Synopsis:\n");
-	if(isatty(fileno(stdout))) printf("\e[1m");
-	printf("portl [-u] [-t] [-h] [-v] PORT\n\n");
-	if(isatty(fileno(stdout))) printf("\e[0m");
-	printf("PORT = The port on which to listen\n\n");
-	printf("+------------------+--------------------------------+\n");
-	printf("| PARAMETER        | FUNCTION                       |\n");
-	printf("+------------------+--------------------------------+\n");
-	printf("| -u, --udp        | Run in UDP mode                |\n");
-	printf("| -t, --tcp        | Run in TCP mode (default)      |\n");
-	printf("| -h, --help       | Print this help message        |\n");
-	printf("| -v, --verbose    | Enable debugging output        |\n");
-	printf("| -p, --persistent | Always wait for new connection |\n");
-	printf("+------------------+--------------------------------+\n");
-	printf("\nArguments are handled in the order they are given and the last one of a type will overwrite any previous ones of the same type!\n");
+	fprintf(stderr,"\n ---portl---\n\n");
+	fprintf(stderr,"Listens on given port for incoming connections/packets and prints bytes to STDOUT.\n\n");
+	fprintf(stderr,"Synopsis:\n");
+	if(isatty(fileno(stdout))) fprintf(stderr,"\e[1m");
+	fprintf(stderr,"portl [-u] [-t] [-h] [-v] PORT\n\n");
+	if(isatty(fileno(stdout))) fprintf(stderr,"\e[0m");
+	fprintf(stderr,"PORT = The port on which to listen\n\n");
+	fprintf(stderr,"+------------------+--------------------------------+\n");
+	fprintf(stderr,"| PARAMETER        | FUNCTION                       |\n");
+	fprintf(stderr,"+------------------+--------------------------------+\n");
+	fprintf(stderr,"| -u, --udp        | Run in UDP mode                |\n");
+	fprintf(stderr,"| -t, --tcp        | Run in TCP mode (default)      |\n");
+	fprintf(stderr,"| -h, --help       | Print this help message        |\n");
+	fprintf(stderr,"| -v, --verbose    | Enable debugging output        |\n");
+	fprintf(stderr,"| -p, --persistent | Always wait for new connection |\n");
+	fprintf(stderr,"+------------------+--------------------------------+\n");
+	fprintf(stderr,"\nArguments are handled in the order they are given and the last one of a type will overwrite any previous ones of the same type!\n");
 }
