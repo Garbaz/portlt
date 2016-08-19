@@ -1,30 +1,28 @@
-default:
-	gcc -Wall -o portl portl.c
-	gcc -Wall -o portt portt.c
+default: gnu11
 
 release:
-	gcc -Wall -O3 -o portl portl.c
-	gcc -Wall -O3 -o portt portt.c
+	gcc -Wall -O2 -o bin/portl src/portl.c
+	gcc -Wall -O2 -o bin/portt src/portt.c
 
 gnu99:
-	gcc -Wall -std=gnu99 -o portl portl.c
-	gcc -Wall -std=gnu99 -o portt portt.c
+	gcc -Wall -std=gnu99 -o bin/portl src/portl.c
+	gcc -Wall -std=gnu99 -o bin/portt src/portt.c
 
 gnu99_release:
-	gcc -Wall -O3 -std=gnu99 -o portl portl.c
-	gcc -Wall -O3 -std=gnu99 -o portt portt.c	
+	gcc -Wall -O2 -std=gnu99 -o bin/portl src/portl.c
+	gcc -Wall -O2 -std=gnu99 -o bin/portt src/portt.c	
 
 gnu11:
-	gcc -Wall -std=gnu11 -o portl portl.c
-	gcc -Wall -std=gnu11 -o portt portt.c
+	gcc -Wall -std=gnu11 -o bin/portl src/portl.c
+	gcc -Wall -std=gnu11 -o bin/portt src/portt.c
 
 gnu11_release:
-	gcc -Wall -O3 -std=gnu11 -o portl portl.c
-	gcc -Wall -O3 -std=gnu11 -o portt portt.c
+	gcc -Wall -O2 -std=gnu11 -o bin/portl src/portl.c
+	gcc -Wall -O2 -std=gnu11 -o bin/portt src/portt.c
 
 install:
-	cp portt /usr/bin/
-	cp portl /usr/bin/
+	cp bin/portt /usr/bin/
+	cp bin/portl /usr/bin/
 
 uninstall: clean
 
