@@ -1,0 +1,4 @@
+-Name "npipe"?
+-"--verbose" for talker
+-One binary
+-Combine TCP & UDP
