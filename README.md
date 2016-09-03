@@ -16,8 +16,8 @@ and
 ./portt --help
 ```
 respectively.
-###Port Listen (*portl*):
+####Port Listen (*portl*):
 Listen on specified port for incoming connections (TCP) / packets (UDP) and write to STDOUT.
-###Port Tell (*portt*):
+####Port Tell (*portt*):
 Send content of STDIN buffer in fixed size byte blocks to specified port on host via TCP / UDP.
 
