@@ -9,11 +9,11 @@ make && sudo make install
 ###Synopsis:
 Run
 ```bash
-./portl --help
+portl --help
 ```
 and
 ```bash
-./portt --help
+portt --help
 ```
 respectively.
 ####Port Listen (*portl*):
