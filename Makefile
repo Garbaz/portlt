@@ -1,4 +1,4 @@
-default: gnu11
+default: gnu11_release
 
 release:
 	if [ ! -e "bin" ];then mkdir bin; elif [ ! -d "bin" ];then printf "\"bin\" isn't a directory. Make might fail...\n"; fi

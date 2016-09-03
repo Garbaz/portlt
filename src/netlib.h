@@ -30,8 +30,6 @@ GITHUB: https://github.com/garbaz/netlib
 #include <netdb.h>
 #include <string.h>
 
-#include <stdio.h>
-
 #define TCONNECT_ERRS 3
 #define TCONNECT_ERR_ADDR -1
 #define TCONNECT_ERR_ADDR_STR "Unable to resolve address"
@@ -63,7 +61,6 @@ int tconnect(char* target, char* target_port)
 	memset(&hints, 0, sizeof hints);
 	hints.ai_family = AF_UNSPEC;
 	hints.ai_socktype = SOCK_STREAM;
-	printf("%s, %s\n", target, target_port);
 	if(getaddrinfo(target, target_port, &hints, &servinfo) != 0)
 	{
 		return -1;
