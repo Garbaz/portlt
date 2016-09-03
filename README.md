@@ -1,12 +1,12 @@
 #portlt
 A very basic pair of software to listen on a port and talk to a port reading \[from STDIN / to STDOUT\] (TCP/UDP)
 
-#####Build & Install:
+###Build & Install:
 ```
 make && sudo make install
 ```
 
-#####Synopsis:
+###Synopsis:
 Run
 ```bash
 ./portl --help
