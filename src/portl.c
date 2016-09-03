@@ -194,7 +194,6 @@ int main(int argc, char* argv[])
 			{
 				if((bytes_recvd = recvfrom(hostfd, recv_buffer, BUFFER_SIZE, 0, (struct sockaddr *)&sender, &senderlen)) < 1)
 				{
-					printf("-");
 					continue;
 				}
 				for(int i = 0; i < bytes_recvd; i++)
@@ -247,17 +246,10 @@ void handle_args(int argc, char* argv[])
 				got_port = 1;
 			}
 		}
-		if(!got_port)
-		{
-//			print_help(argv[0]);
-//			exit(1);
-			strcpy(port_buffer, DEFAULT_PORT);
-		}
 	}
-	else
+	if(!got_port)
 	{
-//		print_help(argv[0]);
-//		exit(1);
+		strcpy(port_buffer, DEFAULT_PORT);
 	}
 }
 

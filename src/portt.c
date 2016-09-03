@@ -179,20 +179,21 @@ void handle_args(int argc, char* argv[])
 				}
 			}
 		}
-		if(!got_addr)
-		{
-			print_help(argv[0]);
-			exit(1);
-		}
-		if(!got_port)
-		{
-			port_buffer = DEFAULT_PORT;
-		}
 	}
 	else
 	{
 		print_help(argv[0]);
 		exit(1);
+	}
+
+	if(!got_addr)
+	{
+		print_help(argv[0]);
+		exit(1);
+	}
+	if(!got_port)
+	{
+		port_buffer = DEFAULT_PORT;
 	}
 }
 
